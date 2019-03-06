@@ -1,13 +1,13 @@
 <?php
 
-namespace App;
+namespace Apps\User\Auth;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Passport\HasApiTokens;
 
-class User extends Authenticatable
+class AuthUser extends Authenticatable
 {
     use Notifiable,HasApiTokens;
 
@@ -19,6 +19,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name', 'email', 'password',
     ];
+    protected $table ='users';
 
     /**
      * The attributes that should be hidden for arrays.

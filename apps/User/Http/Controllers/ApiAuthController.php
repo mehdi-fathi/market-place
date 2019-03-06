@@ -1,8 +1,8 @@
 <?php
-namespace App\Http\Controllers\Api;
+namespace Apps\User\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\User;
+use Apps\User\Auth\AuthUser;
 use Illuminate\Support\Facades\Auth;
 use Validator;
 class AuthController extends Controller
@@ -21,7 +21,7 @@ class AuthController extends Controller
             return response()->json(['error'=>$validator->errors()], 401);                        }
         $input = $request->all();
         $input['password'] = bcrypt($input['password']);
-        $user = User::create($input);
+        $user = AuthUser::create($input);
         $success['token'] =  $user->createToken('AppName')->accessToken;
         return response()->json(['success'=>$success], $this->successStatus);
     }
