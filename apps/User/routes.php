@@ -18,7 +18,12 @@ Route::prefix('Api')->group(function () {
         Route::post('login', '\Apps\User\Http\Controllers\Api\AuthController@login');
         Route::post('register', '\Apps\User\Http\Controllers\Api\AuthController@register');
         Route::group(['middleware' => 'auth:api'], function () {
-            Route::post('getUser', '\Apps\User\Http\Controllers\Api\AuthController@getUser');
+
+            Route::group(['middleware' => [\Apps\User\Http\Middlewares\Permission::class . ":admin-users"]], function () {
+
+                Route::post('getUser', '\Apps\User\Http\Controllers\Api\AuthController@getUser');
+            });
+
         });
 
     });
