@@ -10,7 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::resource('/task', '\Apps\Http\Admin\Controllers\UsersController');
 Route::get('/', function () {
     try {
         DB::connection()->getPdo();
