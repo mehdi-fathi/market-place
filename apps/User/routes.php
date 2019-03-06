@@ -10,21 +10,17 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::resource('/task', '\Apps\Http\Admin\Controllers\UsersController');
 
-Route::prefix('v1')->group(function(){
-    Route::post('login', '\Apps\User\Http\Controllers\Api\AuthController@login');
-    Route::post('register', '\Apps\User\Http\Controllers\Api\AuthController@register');
-    Route::group(['middleware' => 'auth:api'], function(){
-        Route::post('getUser', '\Apps\User\Http\Controllers\Api\AuthController@getUser');
+Route::prefix('Api')->group(function () {
+
+    Route::prefix('v1')->group(function () {
+
+        Route::post('login', '\Apps\User\Http\Controllers\Api\AuthController@login');
+        Route::post('register', '\Apps\User\Http\Controllers\Api\AuthController@register');
+        Route::group(['middleware' => 'auth:api'], function () {
+            Route::post('getUser', '\Apps\User\Http\Controllers\Api\AuthController@getUser');
+        });
+
     });
-});
 
-Route::get('/', function () {
-    try {
-        DB::connection()->getPdo();
-    } catch (\Exception $e) {
-        die("Could not connect to the database.  Please check your configuration. error:" . $e );
-    }
-    return view('welcome');
 });

@@ -1,6 +1,6 @@
 <?php
 
-use Apps\User\Auth\AuthUser;
+use Apps\User\Model\User;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
 
@@ -15,7 +15,7 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(\Apps\User\Model\User::class, function (Faker $faker) {
+$factory->define(User::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
