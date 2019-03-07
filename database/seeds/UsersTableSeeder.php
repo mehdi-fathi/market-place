@@ -25,6 +25,7 @@ class UsersTableSeeder extends Seeder
                     'email' => 'admin@gmail.com',
                     'password' => bcrypt('123456'),
                     'role_id' => \Apps\User\Model\Role::where('role', 'Admin')->first()['id'],
+                    'location_id' => \Apps\Product\Model\Location::all()[0]['id'],
                     'created_at' => now(),
                     'updated_at' => now(),
                 ],
@@ -33,6 +34,7 @@ class UsersTableSeeder extends Seeder
                     'email' => 'seller@gmail.com',
                     'password' => bcrypt('123456'),
                     'role_id' => \Apps\User\Model\Role::where('role', 'Seller')->first()['id'],
+                    'location_id' => \Apps\Product\Model\Location::all()[1]['id'],
                     'created_at' => now(),
                     'updated_at' => now(),
                 ],
@@ -41,6 +43,7 @@ class UsersTableSeeder extends Seeder
                     'email' => 'customer@gmail.com',
                     'password' => bcrypt('123456'),
                     'role_id' => \Apps\User\Model\Role::where('role', 'Customer')->first()['id'],
+                    'location_id' => \Apps\Product\Model\Location::all()[2]['id'],
                     'created_at' => now(),
                     'updated_at' => now(),
                 ]

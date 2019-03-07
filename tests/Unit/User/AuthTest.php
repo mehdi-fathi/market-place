@@ -48,7 +48,12 @@ class AuthTest extends TestCase
             'name' => 'mehdi',
             'email' => 'mehdifathi@gmail.com',
             'password' => '123456',
-            'c_password' => '123456'
+            'c_password' => '123456',
+            'lat' => 120,
+            'lng' => 120,
+            'address' => 'sdsdrwvvs',
+            'radius' => 120984,
+            'city' => 'Tehran',
         ];
         $this->json('POST', '/Api/v1/register', $body,
             ['Accept' => 'application/json'])
@@ -62,7 +67,12 @@ class AuthTest extends TestCase
             'name' => 'mehdi',
             'email' => 'admin@gmail.com',
             'password' => '123456',
-            'c_password' => '123456'
+            'c_password' => '123456',
+            'lat' => 120,
+            'lng' => 120,
+            'address' => 'sdsdrwvvs',
+            'radius' => 120984,
+            'city' => 'Tehran',
         ];
         $this->json('POST', '/Api/v1/register', $body,
             ['Accept' => 'application/json'])
