@@ -39,7 +39,7 @@ class ProductTest extends TestCase
         Passport::actingAs($user);
 
         $response = $this->json('POST', '/Api/v1/seller/products/create', [
-            'store_id' => 1,
+            'market_id' => 1,
             'title' => 'Mac book pro',
             'description' => "It's a type of laptop",
             'price' => 1500,
@@ -58,7 +58,7 @@ class ProductTest extends TestCase
         Passport::actingAs($user);
 
         $response = $this->json('POST', '/Api/v1/seller/products/create', [
-            'store_id' => 1,
+            'market_id' => 1,
             'title' => 'Mac book pro',
             'description' => "It's a type of laptop",
             'price' => 1500.5.'$', // it's not valid data

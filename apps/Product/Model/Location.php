@@ -2,7 +2,7 @@
 
 namespace Apps\Product\Model;
 
-use Apps\User\Model\Store;
+use Apps\User\Model\Market;
 use Illuminate\Database\Eloquent\Model;
 
 class Location extends Model
@@ -19,8 +19,8 @@ class Location extends Model
         'radius',
         'city',
     ];
-    public function stores()
+    public function markets()
     {
-        return $this->hasOne(Store::class);
+        return $this->hasOne(Market::class);
     }
 }

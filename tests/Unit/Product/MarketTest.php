@@ -20,7 +20,7 @@ use Faker\Generator as Faker;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class StoreTest extends TestCase
+class MarketTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -29,7 +29,7 @@ class StoreTest extends TestCase
         parent::setUp();
     }
 
-    public function test_seller_can_create_store()
+    public function test_seller_can_create_market()
     {
 
         $user = User::where([
@@ -39,9 +39,9 @@ class StoreTest extends TestCase
 
         Passport::actingAs($user);
 
-        $response = $this->json('POST', '/Api/v1/seller/stores/create', [
-            'store' => 'Mahan',
-            'description' => "It's a store sell new laptops",
+        $response = $this->json('POST', '/Api/v1/seller/markets/create', [
+            'name' => 'Mahan',
+            'description' => "It's a market sell new laptops",
             'lat' => 1145,
             'lng' => 1145,
             'address' => 'Tehran - pleak 11',

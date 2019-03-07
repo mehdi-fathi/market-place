@@ -2,7 +2,7 @@
 
 namespace Apps\Product\Model;
 
-use Apps\User\Model\Store;
+use Apps\User\Model\Market;
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
@@ -13,14 +13,14 @@ class Product extends Model
      * @var array
      */
     protected $fillable = [
-        'store_id',
+        'market_id',
         'title',
         'description',
         'price',
         'discount',
     ];
-    public function stores()
+    public function markets()
     {
-        return $this->hasOne(Store::class);
+        return $this->hasOne(Market::class);
     }
 }

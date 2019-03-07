@@ -5,12 +5,12 @@ namespace Apps\Product\Http\Controllers\Api\Seller;
 use App\Facades\ApiOutputMaker;
 use App\Http\Controllers\Controller;
 use Apps\Product\Model\Location;
-use Apps\User\Model\Store;
+use Apps\User\Model\Market;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use Request;
 
-class StoresController extends Controller
+class MarketsController extends Controller
 {
     public function createStore(\Illuminate\Http\Request $request)
     {
@@ -21,7 +21,7 @@ class StoresController extends Controller
 
             $request->merge(['location_id' => $newLocation->id]);
 
-            $newStore = Store::create($request->all());
+            $newStore = Market::create($request->all());
 
             if (!$newStore) {
                 throw new \Exception('Store not created for account');
@@ -32,7 +32,7 @@ class StoresController extends Controller
 
         }, 2);
 
-        return ApiOutputMaker::setOutput(trans('product::msg.save_store'))
+        return ApiOutputMaker::setOutput(trans('product::msg.save_market'))
             ->setStatus($status)
             ->getOutput();
     }

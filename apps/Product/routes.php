@@ -29,8 +29,8 @@ Route::prefix('Api')->group(function () {
                     Route::post('products/create',
                         '\Apps\Product\Http\Controllers\Api\Seller\ProductsController@createProduct'
                     );
-                    Route::post('stores/create',
-                        '\Apps\Product\Http\Controllers\Api\Seller\StoresController@createStore'
+                    Route::post('markets/create',
+                        '\Apps\Product\Http\Controllers\Api\Seller\MarketsController@createStore'
                     );
 
                 });

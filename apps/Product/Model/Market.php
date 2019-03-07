@@ -4,10 +4,10 @@ namespace Apps\User\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Store extends Model
+class Market extends Model
 {
     protected $fillable = [
-        'store',
+        'name',
         'description',
         'location_id'
     ];
