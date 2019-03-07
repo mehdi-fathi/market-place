@@ -10,8 +10,15 @@ class Role extends Model
     {
         return $this->hasOne(User::class);
     }
+
     public function permissions()
     {
         return $this->belongsToMany(Permission::class);
+    }
+
+
+    public function scopeGetIdByRole($query, $role)
+    {
+        return $query->where('role', $role)->first()['id'];
     }
 }

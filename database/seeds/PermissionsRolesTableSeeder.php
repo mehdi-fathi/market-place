@@ -12,8 +12,8 @@ class PermissionsRolesTableSeeder extends Seeder
     public function run()
     {
         //
-        DB::table('permissions_roles')->delete();
-        DB::table('permissions_roles')->insert(
+        DB::table('permission_role')->delete();
+        DB::table('permission_role')->insert(
             [
                 [
                     'permission_id' => \Apps\User\Model\Permission::where(

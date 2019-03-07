@@ -25,24 +25,24 @@ class UsersTest extends TestCase
     {
         parent::setUp();
 
+        $this->artisan('config:clear');
+        $this->artisan('migrate:fresh --env=testing');
         $this->artisan('passport:install --env=testing');
+        $this->artisan('db:seed --env=testing');
     }
 
     public function test_user_can_login_form()
     {
 //
-        factory(User::class)->create([
-            'email' => 'admin@gmail.com',
-            'password' => bcrypt($password = '123456'),
-        ]);
         $body = [
             'email' => 'admin@gmail.com',
             'password' => '123456'
         ];
+
         $this->json('POST', '/Api/v1/login', $body,
             ['Accept' => 'application/json'])
             ->assertStatus(200)
-            ->assertJsonStructure(['success' => ['token']]);
+            ->assertJsonStructure(['result' => ['token']]);
     }
 
     public function test_register_form()
@@ -57,7 +57,7 @@ class UsersTest extends TestCase
         $this->json('POST', '/Api/v1/register', $body,
             ['Accept' => 'application/json'])
             ->assertStatus(200)
-            ->assertJsonStructure(['success' => ['token']]);
+            ->assertJsonStructure(['result' => ['token']]);
     }
 
     public function test_get_user()
@@ -73,15 +73,13 @@ class UsersTest extends TestCase
         ];
 
         $token = json_decode($this->json('POST', '/Api/v1/login', $body,
-            ['Accept' => 'application/json'])
-            ->assertStatus(200)
-            ->assertJsonStructure(['success' => ['token']])->getContent());
+            ['Accept' => 'application/json'])->getContent());
 
 
         $this->json('POST', '/Api/v1/getUser', [],
             [
                 'Accept' => 'application/json',
-                'Authorization' => 'Bearer ' . $token->success->token,
+                'Authorization' => 'Bearer ' . $token->result->token,
             ])->assertSee('admin_2@gmail.com');
     }
 }

@@ -2,8 +2,11 @@
 
 namespace App\Exceptions;
 
+use App\Facades\ApiOutputMaker;
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Auth\AuthenticationException;
+use Illuminate\Auth\Access\AuthorizationException;
 
 class Handler extends ExceptionHandler
 {
@@ -46,6 +49,14 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if ($exception instanceof AuthorizationException) {
+                return $this->AuthorizationException();
+        }
         return parent::render($request, $exception);
+    }
+
+    private function AuthorizationException()
+    {
+        return ApiOutputMaker::setOutput('Unauthorized')->setStatus(403)->getOutput();
     }
 }

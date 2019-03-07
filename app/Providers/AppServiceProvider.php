@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Tools\Api\ApiOutputMaker;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
@@ -15,6 +16,9 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         //
+        $this->app->bind('ApiOutputMaker', function () {
+            return new ApiOutputMaker;
+        });
     }
 
     /**
