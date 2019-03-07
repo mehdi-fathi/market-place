@@ -56,6 +56,15 @@ class AuthController extends Controller
                 ->getOutput();
         }
     }
+    public function logout()
+    {
+        if (Auth::check()) {
+            Auth::user()->token()->revoke();
+            return ApiOutputMaker::setOutput(['msg' => 'Logout is successfully.'])
+                ->setStatus(200)
+                ->getOutput();
+        }
+    }
 
     public function getUser()
     {
