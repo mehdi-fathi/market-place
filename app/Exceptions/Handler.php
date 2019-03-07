@@ -61,12 +61,12 @@ class Handler extends ExceptionHandler
 
     private function AuthorizationException()
     {
-        return ApiOutputMaker::setOutput('Unauthorized')->setStatus(403)->getOutput();
+        return ApiOutputMaker::setOutput('Unauthorized')->setStatus(401)->getOutput();
     }
 
     protected function unauthenticated($request, AuthenticationException $exception)
     {
-        return ApiOutputMaker::setOutput('unauthenticated')->setStatus(401)->getOutput();
+        return ApiOutputMaker::setOutput('Unauthorized')->setStatus(401)->getOutput();
     }
 
     protected function invalidJson($request, ValidationException $exception)

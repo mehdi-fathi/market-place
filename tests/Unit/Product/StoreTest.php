@@ -43,7 +43,13 @@ class StoreTest extends TestCase
         $response = $this->json('POST', '/Api/v1/seller/stores/create', [
             'store' => 'Mahan',
             'description' => "It's a store sell new laptops",
+            'lat' => 1145,
+            'lng' => 1145,
+            'address' => 'Tehran - pleak 11',
+            'radius' => 215445,
+            'city' => 'Tehran',
         ]);
+
         $response->assertStatus(201);
     }
 }

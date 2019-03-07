@@ -9,24 +9,30 @@ use Apps\Product\Model\Product;
 use Apps\User\Model\Store;
 use Apps\User\Model\User;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 use Request;
 
 class StoresController extends Controller
 {
     public function createStore(\Illuminate\Http\Request $request)
     {
-        $status = Response::HTTP_INTERNAL_SERVER_ERROR;
 
-        DB::transaction(function () use ($request) {
+        $status = DB::transaction(function () use ($request) {
 
-//            Location::create();
+            $newLocation = Location::create($request->all());
 
-            if(Store::create($request->all())){
-                $status = Response::HTTP_CREATED;
+            $request->merge(['location_id' => $newLocation->id]);
+
+            $newStore = Store::create($request->all());
+
+            if (!$newStore) {
+                throw new \Exception('Store not created for account');
             }
+            $status = Response::HTTP_CREATED;
 
+            return $status;
 
-        });
+        }, 2);
 
 
         $msg = 'Store has been saved.';
