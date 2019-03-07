@@ -20,7 +20,7 @@ Route::prefix('Api')->group(function () {
 
         Route::group(['middleware' => 'auth:api'], function () {
 
-            Route::post('getUser', '\Apps\User\Http\Controllers\Api\AuthController@getUser');
+            Route::post('get-user', '\Apps\User\Http\Controllers\Api\AuthController@getUser');
 
             Route::group(['middleware' => [\Apps\User\Http\Middlewares\Permission::class .
                 ":admin-users,seller-users,customer-users"]], function () {

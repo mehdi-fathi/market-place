@@ -94,7 +94,7 @@ class UsersTest extends TestCase
         $token = json_decode($this->json('POST', '/Api/v1/login', $body,
             ['Accept' => 'application/json'])->getContent());
 
-        $this->json('POST', '/Api/v1/getUser', [],
+        $this->json('POST', '/Api/v1/get-user', [],
             [
                 'Accept' => 'application/json',
                 'Authorization' => 'Bearer ' . $token->result->token,
