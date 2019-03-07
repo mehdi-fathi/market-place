@@ -4,6 +4,7 @@ namespace Apps\Product\Http\Controllers\Api\Seller;
 
 use App\Facades\ApiOutputMaker;
 use App\Http\Controllers\Controller;
+use Apps\Product\Http\Requests\StoreProductUser;
 use Apps\Product\Model\Product;
 use Apps\User\Model\User;
 use Illuminate\Http\Response;
@@ -11,7 +12,7 @@ use Request;
 
 class ProductsController extends Controller
 {
-    public function createProduct(\Illuminate\Http\Request $request)
+    public function createProduct(StoreProductUser $request)
     {
         $status = Response::HTTP_INTERNAL_SERVER_ERROR;
 

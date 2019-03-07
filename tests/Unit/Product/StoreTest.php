@@ -39,7 +39,6 @@ class StoreTest extends TestCase
 
         Passport::actingAs($user);
 
-
         $response = $this->json('POST', '/Api/v1/seller/stores/create', [
             'store' => 'Mahan',
             'description' => "It's a store sell new laptops",

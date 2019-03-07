@@ -29,20 +29,8 @@ class ProductTest extends TestCase
         parent::setUp();
     }
 
-    public function test_seller_can_create_store()
+    public function test_seller_can_create_product()
     {
-//
-//        $body = [
-//            'email' => 'Seller@gmail.com',
-//            'password' => '123456'
-//        ];
-//
-//        $this->json('POST', '/Api/v1/login', $body,
-//            ['Accept' => 'application/json'])
-//            ->assertStatus(200)
-//            ->assertJsonStructure(['result' => ['token']]);
-
-
         $user = User::where([
             'email' => 'seller@gmail.com',
             'role_id' => Role::getIdByRole('Seller')
@@ -57,6 +45,30 @@ class ProductTest extends TestCase
             'price' => 1500,
             'discount' => 10,
         ]);
-        $response->assertStatus(201);
+        $response->assertStatus(Response::HTTP_CREATED);
+    }
+
+    public function test_seller_validation_create_product()
+    {
+        $user = User::where([
+            'email' => 'seller@gmail.com',
+            'role_id' => Role::getIdByRole('Seller')
+        ])->first();
+//        dd($user);
+        Passport::actingAs($user);
+
+        $response = $this->json('POST', '/Api/v1/seller/products/create', [
+            'store_id' => 1,
+            'title' => 'Mac book pro',
+            'description' => "It's a type of laptop",
+            'price' => 1500.5.'$', // it's not valid data
+            'discount' => 10,
+        ]);
+        $response->assertStatus(Response::HTTP_UNPROCESSABLE_ENTITY)
+            ->assertJsonStructure([
+                'result' => [
+                    'error'=>['price']
+                ]
+            ]);;
     }
 }
