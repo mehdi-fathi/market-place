@@ -5,9 +5,7 @@ namespace Apps\Product\Http\Controllers\Api\Seller;
 use App\Facades\ApiOutputMaker;
 use App\Http\Controllers\Controller;
 use Apps\Product\Model\Location;
-use Apps\Product\Model\Product;
 use Apps\User\Model\Store;
-use Apps\User\Model\User;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use Request;
@@ -34,8 +32,8 @@ class StoresController extends Controller
 
         }, 2);
 
-
-        $msg = 'Store has been saved.';
-        return ApiOutputMaker::setOutput($msg)->setStatus($status)->getOutput();
+        return ApiOutputMaker::setOutput(trans('product::msg.save_store'))
+            ->setStatus($status)
+            ->getOutput();
     }
 }

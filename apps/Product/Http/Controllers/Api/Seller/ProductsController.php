@@ -19,9 +19,9 @@ class ProductsController extends Controller
             $status = Response::HTTP_CREATED;
         }
 
-        $msg = 'Product has been saved.';
-        return ApiOutputMaker::setOutput($msg)->setStatus($status)->getOutput();
+        return ApiOutputMaker::setOutput(trans('product::msg.save_product'))
+            ->setStatus($status)
+            ->getOutput();
     }
-
 
 }
