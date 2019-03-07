@@ -25,11 +25,6 @@ class AuthTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-
-        $this->artisan('config:clear');
-        $this->artisan('migrate:fresh --env=testing');
-        $this->artisan('passport:install --env=testing');
-        $this->artisan('db:seed --env=testing');
     }
 
     public function test_user_can_login_form()

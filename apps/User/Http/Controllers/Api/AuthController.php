@@ -4,8 +4,9 @@ namespace Apps\User\Http\Controllers\Api;
 
 use App\Facades\ApiOutputMaker;
 use Apps\User\Http\Requests\StoreRegisterUser;
-use Apps\User\Model\Role;
+use Apps\User\Model\Product;
 use App\Http\Controllers\Controller;
+use Apps\User\Model\Role;
 use Apps\User\Model\User;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;

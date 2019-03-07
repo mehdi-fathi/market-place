@@ -10,7 +10,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::resource('/task', '\Apps\Http\Admin\Controllers\UsersController');
 
 //Route::prefix('v1')->group(function(){
 //    Route::post('login', '\Apps\User\Http\Controllers\Api\AuthController@login');

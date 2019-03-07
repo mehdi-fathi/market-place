@@ -16,6 +16,7 @@ class CreateStoresTable extends Migration {
 		{
 			$table->integer('id', true);
 			$table->integer('user_id');
+			$table->integer('location_id');
 			$table->string('store', 50);
 			$table->text('description', 65535)->nullable();
 			$table->timestamps();

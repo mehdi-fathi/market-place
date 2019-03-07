@@ -16,7 +16,8 @@ class CreateProductsTable extends Migration {
 		{
 			$table->integer('id', true);
 			$table->integer('store_id');
-			$table->string('product', 30);
+			$table->string('title', 30);
+			$table->text('description');
 			$table->decimal('price', 10);
 			$table->decimal('discount', 10, 0);
 			$table->timestamps();
