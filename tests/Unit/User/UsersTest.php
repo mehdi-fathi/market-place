@@ -84,7 +84,7 @@ class UsersTest extends TestCase
 //
         factory(User::class)->create([
             'email' => 'admin_2@gmail.com',
-            'password' => bcrypt($password = '123456'),
+            'password' =>  '123456',
         ]);
         $body = [
             'email' => 'admin_2@gmail.com',
@@ -93,7 +93,6 @@ class UsersTest extends TestCase
 
         $token = json_decode($this->json('POST', '/Api/v1/login', $body,
             ['Accept' => 'application/json'])->getContent());
-
 
         $this->json('POST', '/Api/v1/getUser', [],
             [
