@@ -18,7 +18,7 @@ use Faker\Generator as Faker;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class UsersTest extends TestCase
+class AuthTest extends TestCase
 {
     use RefreshDatabase;
 

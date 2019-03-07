@@ -1,10 +1,10 @@
 <?php
 
-namespace Apps\Admin;
+namespace Apps\Product;
 
 use Illuminate\Support\ServiceProvider;
 
-class AdminServiceProvider extends ServiceProvider
+class ProductServiceProvider extends ServiceProvider
 {
     /**
      * Register services.

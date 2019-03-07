@@ -20,7 +20,9 @@ Route::prefix('Api')->group(function () {
 
         Route::group(['middleware' => 'auth:api'], function () {
 
-            Route::post('get-user', '\Apps\User\Http\Controllers\Api\AuthController@getUser');
+            Route::post('get-user',
+                '\Apps\User\Http\Controllers\Api\AuthController@getUser'
+            );
 
             Route::group(['middleware' => [\Apps\User\Http\Middlewares\Permission::class .
                 ":admin-users,seller-users,customer-users"]], function () {
@@ -28,9 +30,20 @@ Route::prefix('Api')->group(function () {
 
             });
 
-            Route::group(['middleware' => [\Apps\User\Http\Middlewares\Permission::class .
-                ":admin-users,seller-users,customer-users"]], function () {
 
+            Route::prefix('admin')->group(function () {
+
+                Route::group([
+                    'middleware' => [\Apps\User\Http\Middlewares\Permission::class .
+                        ":admin-users"]
+                ], function () {
+
+                    Route::post('create-seller',
+                        '\Apps\User\Http\Controllers\Api\Admin\UsersController@createSeller'
+                    );
+
+
+                });
 
             });
 

@@ -176,6 +176,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Laravel\Passport\PassportServiceProvider::class,
         Apps\User\UserServiceProvider::class,
+        Apps\Product\ProductServiceProvider::class,
         Way\Generators\GeneratorsServiceProvider::class,
         Xethron\MigrationsGenerator\MigrationsGeneratorServiceProvider::class,
 
