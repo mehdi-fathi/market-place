@@ -19,7 +19,8 @@ Route::prefix('Api')->group(function () {
         Route::post('register', '\Apps\User\Http\Controllers\Api\AuthController@register');
         Route::group(['middleware' => 'auth:api'], function () {
 
-            Route::group(['middleware' => [\Apps\User\Http\Middlewares\Permission::class . ":admin-users,seller-users,customer-users"]], function () {
+            Route::group(['middleware' => [\Apps\User\Http\Middlewares\Permission::class .
+                ":admin-users,seller-users,customer-users"]], function () {
 
                 Route::post('getUser', '\Apps\User\Http\Controllers\Api\AuthController@getUser');
             });

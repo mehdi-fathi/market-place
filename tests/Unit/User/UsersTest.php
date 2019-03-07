@@ -11,6 +11,7 @@ namespace Tests\Unit\User;
 
 use Apps\User\Model\User;
 use Illuminate\Database\Eloquent\Factory;
+use Illuminate\Http\Response;
 use Tests\TestCase;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
@@ -58,6 +59,24 @@ class UsersTest extends TestCase
             ['Accept' => 'application/json'])
             ->assertStatus(200)
             ->assertJsonStructure(['result' => ['token']]);
+    }
+    public function test_validation_register_form()
+    {
+//
+        $body = [
+            'name' => 'mehdi',
+            'email' => 'admin@gmail.com',
+            'password' => '123456',
+            'c_password' => '123456'
+        ];
+        $this->json('POST', '/Api/v1/register', $body,
+            ['Accept' => 'application/json'])
+            ->assertStatus(Response::HTTP_UNPROCESSABLE_ENTITY)
+            ->assertJsonStructure([
+                'result' => [
+                    'error'=>['email']
+                ]
+            ]);
     }
 
     public function test_get_user()

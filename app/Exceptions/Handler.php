@@ -4,9 +4,11 @@ namespace App\Exceptions;
 
 use App\Facades\ApiOutputMaker;
 use Exception;
+use http\Env\Response;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Validation\ValidationException;
 
 class Handler extends ExceptionHandler
 {
@@ -32,7 +34,8 @@ class Handler extends ExceptionHandler
     /**
      * Report or log an exception.
      *
-     * @param  \Exception  $exception
+     * @param  \Exception $exception
+     *
      * @return void
      */
     public function report(Exception $exception)
@@ -43,14 +46,15 @@ class Handler extends ExceptionHandler
     /**
      * Render an exception into an HTTP response.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Exception  $exception
+     * @param  \Illuminate\Http\Request $request
+     * @param  \Exception               $exception
+     *
      * @return \Illuminate\Http\Response
      */
     public function render($request, Exception $exception)
     {
         if ($exception instanceof AuthorizationException) {
-                return $this->AuthorizationException();
+            return $this->AuthorizationException();
         }
         return parent::render($request, $exception);
     }
@@ -58,5 +62,21 @@ class Handler extends ExceptionHandler
     private function AuthorizationException()
     {
         return ApiOutputMaker::setOutput('Unauthorized')->setStatus(403)->getOutput();
+    }
+
+    protected function unauthenticated($request, AuthenticationException $exception)
+    {
+        return ApiOutputMaker::setOutput('unauthenticated')->setStatus(401)->getOutput();
+    }
+
+    protected function invalidJson($request, ValidationException $exception)
+    {
+        return ApiOutputMaker::setOutput(
+            [
+                'error' => $exception->errors()
+            ]
+        )
+            ->setStatus(\Illuminate\Http\Response::HTTP_UNPROCESSABLE_ENTITY)
+            ->getOutput();
     }
 }

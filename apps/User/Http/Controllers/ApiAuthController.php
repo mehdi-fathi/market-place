@@ -3,6 +3,7 @@
 namespace Apps\User\Http\Controllers\Api;
 
 use App\Facades\ApiOutputMaker;
+use Apps\User\Http\Requests\StoreRegisterUser;
 use Apps\User\Model\Role;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -15,21 +16,10 @@ class AuthController extends Controller
 {
     public $successStatus = 200;
 
-    public function register(Request $request)
+    public function register(StoreRegisterUser $request)
     {
         $request->merge(['role_id' => Role::getIdByRole('Customer')]);
-
-        $validator = Validator::make($request->all(), [
-            'name' => 'required',
-            'email' => 'required|email|unique:users',
-            'password' => 'required',
-            'c_password' => 'required|same:password',
-        ]);
-        if ($validator->fails()) {
-            return ApiOutputMaker::setOutput(['error' => $validator->errors()])->setStatus(Response::HTTP_BAD_REQUEST)->getOutput();
-        }
         $input = $request->all();
-        $input['password'] = bcrypt($input['password']);
         $user = User::create($input);
         $success['token'] = $user->createToken('AppName')->accessToken;
 
