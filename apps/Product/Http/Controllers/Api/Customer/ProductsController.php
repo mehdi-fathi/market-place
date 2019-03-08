@@ -4,47 +4,36 @@ namespace Apps\Product\Http\Controllers\Api\Customer;
 
 use App\Facades\ApiOutputMaker;
 use App\Http\Controllers\Controller;
-use Apps\Product\Http\Requests\StoreProduct;
 use Apps\Product\Model\Product;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Request;
 
 class ProductsController extends Controller
 {
+    private $_product_model;
+
+    public function __construct(Product $product)
+    {
+        $this->_product_model = $product;
+    }
+
     public function findNear(\Illuminate\Http\Request $request)
     {
-        $status = Response::HTTP_INTERNAL_SERVER_ERROR;
+        $status = Response::HTTP_OK;
 
-//        dd(Auth::user()->locations()->first());
+        $distance = 50;
 
         $location_user = Auth::user()->locations()->first();
 
-//        dd($location_user);
+        if (!empty($request->get('distance'))) {
 
-        $product = new Product();
-
-        $ss = Product::whereHas('markets', function ($query) use ($location_user) {
-
-            $query->whereHas('locations', function ($query) use ($location_user) {
-
-                $latitude = $location_user['latitude'];
-                $longitude = $location_user['longitude'];
-
-                $query->whereRaw(DB::raw("(3959 * acos( cos( radians($latitude) ) * cos( radians( latitude ) )  *
-                         cos( radians( longitude ) - radians($longitude) ) + sin( radians($latitude) ) * sin(
-                         radians( latitude ) ) ) ) < 100 "));
-            });
-        })->get();
-
-        dd($ss);
-
-        if (Product::create($request->all())) {
-            $status = Response::HTTP_CREATED;
+            $distance = $request->get('distance');
         }
 
-        return ApiOutputMaker::setOutput(trans('product::msg.save_product'))
+        $products_near = $this->_product_model->find_by_near($location_user, $distance)->toArray();
+
+        return ApiOutputMaker::setOutput($products_near)
             ->setStatus($status)
             ->getOutput();
     }

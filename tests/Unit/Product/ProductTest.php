@@ -78,19 +78,38 @@ class ProductTest extends TestCase
             'email' => 'customer@gmail.com',
             'role_id' => Role::getIdByRole('Customer')
         ])->first();
-//        dd($user);
+
         Passport::actingAs($user);
 
         $response = $this->json('POST', '/Api/v1/customer/products/find-near', [
         ]);
 
-        dd($response);
+        $response->assertStatus(Response::HTTP_OK)
+            ->assertJsonStructure([
+                'result' => [
+                    '*' => [
+                        'price',
+                        'market_id',
+                        'title',
+                    ]
+                ]
+            ]);
+
+
+        $response = $this->json('POST', '/Api/v1/customer/products/find-near', [
+            'distance' => 100
+        ]);
 
         $response->assertStatus(Response::HTTP_OK)
             ->assertJsonStructure([
                 'result' => [
-                    'price'
+                    '*' => [
+                        'price',
+                        'market_id',
+                        'title',
+                    ]
                 ]
             ]);
+
     }
 }
