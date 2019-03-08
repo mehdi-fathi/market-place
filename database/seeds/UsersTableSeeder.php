@@ -49,5 +49,31 @@ class UsersTableSeeder extends Seeder
                 ]
             ]
         );
+
+
+        $faker = \Faker\Factory::create();
+
+        foreach (range(1, 50) as $index) {
+
+            $lastId = DB::table('locations')->insertGetId([
+                'address' => $faker->address,
+                'latitude' => $faker->latitude(40, 41.985091),
+                'longitude' => $faker->longitude(-70,-73.168285),
+                'city' => $faker->city,
+                'radius' => 1,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+
+            DB::table('users')->insertGetId([
+                'name' => $faker->name(),
+                'email' => $faker->email,
+                'password' => bcrypt('123456'),
+                'role_id' => \Apps\User\Model\Role::where('role', 'Customer')->first()['id'],
+                'location_id' => $lastId,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        }
     }
 }

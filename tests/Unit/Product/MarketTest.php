@@ -42,8 +42,8 @@ class MarketTest extends TestCase
         $response = $this->json('POST', '/Api/v1/seller/markets/create', [
             'name' => 'Mahan',
             'description' => "It's a market sell new laptops",
-            'lat' => 1145,
-            'lng' => 1145,
+            'latitude' => 1145,
+            'longitude' => 1145,
             'address' => 'Tehran - pleak 11',
             'radius' => 215445,
             'city' => 'Tehran',
