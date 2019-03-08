@@ -29,7 +29,9 @@ class AuthController extends Controller
             $request->merge(['role_id' => Role::getIdByRole('Customer')]);
 
             $input = $request->all();
+
             $user = User::create($input);
+
             $success['token'] = $user->createToken('AppName')->accessToken;
             return $success;
 

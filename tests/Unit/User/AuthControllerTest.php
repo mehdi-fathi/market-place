@@ -46,6 +46,7 @@ class AuthControllerTest extends TestCase
 //
         $body = [
             'name' => 'mehdi',
+            'family' => 'fathi',
             'email' => 'mehdifathi@gmail.com',
             'password' => '123456',
             'c_password' => '123456',
@@ -65,6 +66,7 @@ class AuthControllerTest extends TestCase
 //
         $body = [
             'name' => 'mehdi',
+            'family' => 'fathi',
             'email' => 'admin@gmail.com',
             'password' => '123456',
             'c_password' => '123456',
@@ -85,7 +87,6 @@ class AuthControllerTest extends TestCase
 
     public function test_get_user()
     {
-//
         factory(User::class)->create([
             'email' => 'admin_2@gmail.com',
             'password' =>  '123456',

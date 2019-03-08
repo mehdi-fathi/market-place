@@ -28,6 +28,7 @@ class UsersControllerTest extends TestCase
 //
         $body = [
             'name' => 'mehdi',
+            'family' => 'fathi',
             'email' => 'mehdifathi@gmail.com',
             'password' => '123456',
             'c_password' => '123456',
@@ -53,6 +54,7 @@ class UsersControllerTest extends TestCase
 //
         $body = [
             'name' => 'mehdi',
+            'family' => 'fathi',
             'email' => 'mehdifathi@gmail.com',
             'password' => '123456',
             'c_password' => '123456',

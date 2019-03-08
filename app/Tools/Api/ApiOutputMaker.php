@@ -35,7 +35,7 @@ class ApiOutputMaker
         return response()->json($this->_output, $this->_output['status']);
     }
 
-    public function output($type = 'json')
+    public function output()
     {
         return $this->getOutput();
     }

@@ -22,6 +22,7 @@ class UsersTableSeeder extends Seeder
             [
                 [
                     'name' => Faker::create()->name(),
+                    'family' => 'admin',
                     'email' => 'admin@gmail.com',
                     'password' => bcrypt('123456'),
                     'role_id' => \Apps\User\Model\Role::where('role', 'Admin')->first()['id'],
@@ -32,6 +33,7 @@ class UsersTableSeeder extends Seeder
                 [
                     'name' => Faker::create()->name(),
                     'email' => 'seller@gmail.com',
+                    'family' => 'seller',
                     'password' => bcrypt('123456'),
                     'role_id' => \Apps\User\Model\Role::where('role', 'Seller')->first()['id'],
                     'location_id' => \Apps\Product\Model\Location::all()[1]['id'],
@@ -40,6 +42,7 @@ class UsersTableSeeder extends Seeder
                 ],
                 [
                     'name' => Faker::create()->name(),
+                    'family' => 'customer',
                     'email' => 'customer@gmail.com',
                     'password' => bcrypt('123456'),
                     'role_id' => \Apps\User\Model\Role::where('role', 'Customer')->first()['id'],
@@ -58,7 +61,7 @@ class UsersTableSeeder extends Seeder
             $lastId = DB::table('locations')->insertGetId([
                 'address' => $faker->address,
                 'latitude' => $faker->latitude(40, 41.985091),
-                'longitude' => $faker->longitude(-70,-73.168285),
+                'longitude' => $faker->longitude(-70, -73.168285),
                 'city' => $faker->city,
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -66,6 +69,7 @@ class UsersTableSeeder extends Seeder
 
             DB::table('users')->insertGetId([
                 'name' => $faker->name(),
+                'family' => $faker->lastName,
                 'email' => $faker->email,
                 'password' => bcrypt('123456'),
                 'role_id' => \Apps\User\Model\Role::where('role', 'Customer')->first()['id'],
