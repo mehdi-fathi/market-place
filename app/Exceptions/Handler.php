@@ -56,17 +56,28 @@ class Handler extends ExceptionHandler
         if ($exception instanceof AuthorizationException) {
             return $this->AuthorizationException();
         }
+        if($request->header('Accept') != 'application/json'){
+
+            return ApiOutputMaker::setOutput('Header is wrong.you should set application/json in key Accept.')
+                ->setStatus(\Illuminate\Http\Response::HTTP_UNPROCESSABLE_ENTITY)
+                ->getOutput();
+        }
+
         return parent::render($request, $exception);
     }
 
     private function AuthorizationException()
     {
-        return ApiOutputMaker::setOutput('Unauthorized')->setStatus(401)->getOutput();
+        return ApiOutputMaker::setOutput('Unauthorized')
+            ->setStatus(\Illuminate\Http\Response::HTTP_UNAUTHORIZED)
+            ->getOutput();
     }
 
     protected function unauthenticated($request, AuthenticationException $exception)
     {
-        return ApiOutputMaker::setOutput('Unauthorized')->setStatus(401)->getOutput();
+        return ApiOutputMaker::setOutput('Unauthorized')
+            ->setStatus(\Illuminate\Http\Response::HTTP_UNAUTHORIZED)
+            ->getOutput();
     }
 
     protected function invalidJson($request, ValidationException $exception)

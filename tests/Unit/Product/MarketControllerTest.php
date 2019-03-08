@@ -20,7 +20,7 @@ use Faker\Generator as Faker;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class MarketTest extends TestCase
+class MarketControllerTest extends TestCase
 {
     use RefreshDatabase;
 
