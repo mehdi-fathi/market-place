@@ -21,6 +21,6 @@ class Product extends Model
     ];
     public function markets()
     {
-        return $this->hasOne(Market::class);
+        return $this->belongsTo(Market::class,'market_id');
     }
 }

@@ -61,14 +61,36 @@ class ProductTest extends TestCase
             'market_id' => 1,
             'title' => 'Mac book pro',
             'description' => "It's a type of laptop",
-            'price' => 1500.5.'$', // it's not valid data
+            'price' => 1500.5 . '$', // it's not valid data
             'discount' => 10,
         ]);
         $response->assertStatus(Response::HTTP_UNPROCESSABLE_ENTITY)
             ->assertJsonStructure([
                 'result' => [
-                    'error'=>['price']
+                    'error' => ['price']
                 ]
             ]);;
+    }
+
+    public function test_customer_find_near()
+    {
+        $user = User::where([
+            'email' => 'customer@gmail.com',
+            'role_id' => Role::getIdByRole('Customer')
+        ])->first();
+//        dd($user);
+        Passport::actingAs($user);
+
+        $response = $this->json('POST', '/Api/v1/customer/products/find-near', [
+        ]);
+
+        dd($response);
+
+        $response->assertStatus(Response::HTTP_OK)
+            ->assertJsonStructure([
+                'result' => [
+                    'price'
+                ]
+            ]);
     }
 }

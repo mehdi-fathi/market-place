@@ -22,7 +22,8 @@ Route::prefix('Api')->group(function () {
             Route::prefix('seller')->group(function () {
 
                 Route::group([
-                    'middleware' => [\Apps\User\Http\Middlewares\Permission::class .
+                    'middleware' => [
+                        \Apps\User\Http\Middlewares\Permission::class .
                         ":seller-users"]
                 ], function () {
 
@@ -31,6 +32,21 @@ Route::prefix('Api')->group(function () {
                     );
                     Route::post('markets/create',
                         '\Apps\Product\Http\Controllers\Api\Seller\MarketsController@createStore'
+                    );
+
+                });
+
+            });
+
+            Route::prefix('customer')->group(function () {
+
+                Route::group([
+                    'middleware' => [\Apps\User\Http\Middlewares\Permission::class .
+                        ":customer-users"]
+                ], function () {
+
+                    Route::post('products/find-near',
+                        '\Apps\Product\Http\Controllers\Api\Customer\ProductsController@findNear'
                     );
 
                 });

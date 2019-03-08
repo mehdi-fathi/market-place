@@ -2,6 +2,7 @@
 
 namespace Apps\User\Model;
 
+use Apps\Product\Model\Location;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -51,6 +52,10 @@ class User extends Authenticatable
     public function roles()
     {
         return $this->belongsTo(Role::class,'role_id');
+    }
+    public function locations()
+    {
+        return $this->belongsTo(Location::class,'location_id');
     }
 }
 

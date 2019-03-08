@@ -2,6 +2,7 @@
 
 namespace Apps\User\Model;
 
+use Apps\Product\Model\Location;
 use Illuminate\Database\Eloquent\Model;
 
 class Market extends Model
@@ -15,9 +16,6 @@ class Market extends Model
     protected static function boot()
     {
         parent::boot();
-        static::addGlobalScope('order', function (Builder $builder) {
-            $builder->orderBy('id', 'desc');
-        });
         static::creating(function ($model) {
             if (empty($model->attributes['user_id'])) {
                 $model->attributes['user_id'] = auth()->id();
@@ -31,7 +29,7 @@ class Market extends Model
     }
     public function locations()
     {
-        return $this->belongsTo(Location::class);
+        return $this->belongsTo(Location::class,'location_id');
     }
 
 }

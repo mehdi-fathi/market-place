@@ -15,7 +15,6 @@ class MarketsTableSeeder extends Seeder
 
         DB::table('markets')->delete();
 
-
         $faker = \Faker\Factory::create();
 
         foreach (range(1, 200) as $index) {
@@ -33,7 +32,7 @@ class MarketsTableSeeder extends Seeder
             DB::table('markets')->insert([
                 'user_id' => \Apps\User\Model\Role::getIdByRole('Seller'),
                 'location_id' => $lastId,
-                'name' => $faker->lastName,
+                'name' => $faker->company(20),
                 'description' => $faker->text,
                 'created_at' => $faker->dateTime,
                 'updated_at' => $faker->dateTime,
