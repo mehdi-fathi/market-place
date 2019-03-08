@@ -24,7 +24,7 @@ class ProductsTableSeeder extends Seeder
                 'price' => rand(0,100000.999),
                 'description' => $faker->text,
                 'created_at' => now(),
-                'updated_at' => $faker->dateTimeBetween('now', '+1 years'),
+                'updated_at' => now(),
             ]);
         }
     }

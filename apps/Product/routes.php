@@ -6,7 +6,6 @@ Route::prefix('Api')->group(function () {
 
         Route::group(['middleware' => 'auth:api'], function () {
 
-
             Route::prefix('seller')->group(function () {
 
                 Route::group([
@@ -16,10 +15,10 @@ Route::prefix('Api')->group(function () {
                 ], function () {
 
                     Route::post('products/create',
-                        '\Apps\Product\Http\Controllers\Api\Seller\ProductsController@createProduct'
+                        '\Apps\Product\Http\Controllers\Api\Seller\ProductsController@create'
                     );
                     Route::post('markets/create',
-                        '\Apps\Product\Http\Controllers\Api\Seller\MarketsController@createStore'
+                        '\Apps\Product\Http\Controllers\Api\Seller\MarketsController@create'
                     );
 
                 });

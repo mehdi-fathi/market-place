@@ -26,11 +26,11 @@ class Product extends Model
         return $this->belongsTo(Market::class, 'market_id');
     }
 
-    public function find_by_near($location_user,$radius)
+    public function find_by_near($location_user, $radius)
     {
-        return $this->whereHas('markets', function ($query) use ($location_user,$radius) {
+        return $this->whereHas('markets', function ($query) use ($location_user, $radius) {
 
-            $query->whereHas('locations', function ($query) use ($location_user,$radius) {
+            $query->whereHas('locations', function ($query) use ($location_user, $radius) {
 
                 $latitude = $location_user['latitude'];
                 $longitude = $location_user['longitude'];

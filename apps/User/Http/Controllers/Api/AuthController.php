@@ -35,7 +35,6 @@ class AuthController extends Controller
 
         }, 2);
 
-
         return ApiOutputMaker::setOutput($success)->getOutput();
     }
 
@@ -56,11 +55,12 @@ class AuthController extends Controller
                 ->getOutput();
         }
     }
+
     public function logout()
     {
         if (Auth::check()) {
             Auth::user()->token()->revoke();
-            return ApiOutputMaker::setOutput(['msg' => 'Logout is successfully.'])
+            return ApiOutputMaker::setOutput(['msg' => trans('user::msg.logout')])
                 ->setStatus(200)
                 ->getOutput();
         }

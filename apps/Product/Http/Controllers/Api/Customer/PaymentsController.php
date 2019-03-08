@@ -30,7 +30,7 @@ class PaymentsController extends Controller
             $status = Response::HTTP_CREATED;
         }
 
-        return ApiOutputMaker::setOutput('Payment has been successfully.')
+        return ApiOutputMaker::setOutput(trans('product::msg.save_payment'))
             ->setStatus($status)
             ->getOutput();
     }

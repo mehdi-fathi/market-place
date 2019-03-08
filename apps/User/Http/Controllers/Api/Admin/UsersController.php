@@ -26,17 +26,17 @@ class UsersController extends Controller
             $request->merge(['role_id' => Role::getIdByRole('Seller')]);
 
             $input = $request->all();
-
-            $msg = 'error';
             $newUser = User::create($input);
+
             if (!$newUser) {
-                throw new \Exception('Store not created for account');
+                throw new \Exception(trans('user::msg.save_seller_exception'));
             }
             return Response::HTTP_CREATED;
 
         }, 2);
 
-        $msg = 'user has been saved.';
-        return ApiOutputMaker::setOutput($msg)->setStatus($status)->getOutput();
+        return ApiOutputMaker::setOutput(trans('user::msg.save_seller'))
+            ->setStatus($status)
+            ->getOutput();
     }
 }

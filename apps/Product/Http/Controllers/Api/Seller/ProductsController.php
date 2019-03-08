@@ -11,7 +11,7 @@ use Request;
 
 class ProductsController extends Controller
 {
-    public function createProduct(StoreProduct $request)
+    public function create(StoreProduct $request)
     {
         $status = Response::HTTP_INTERNAL_SERVER_ERROR;
 

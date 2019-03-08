@@ -12,19 +12,18 @@ use Request;
 
 class MarketsController extends Controller
 {
-    public function createStore(\Illuminate\Http\Request $request)
+    public function create(\Illuminate\Http\Request $request)
     {
-
         $status = DB::transaction(function () use ($request) {
 
             $newLocation = Location::create($request->all());
 
             $request->merge(['location_id' => $newLocation->id]);
 
-            $newStore = Market::create($request->all());
+            $newMarket = Market::create($request->all());
 
-            if (!$newStore) {
-                throw new \Exception('Store not created for account');
+            if (!$newMarket) {
+                throw new \Exception(trans('product::msg.save_market_exception'));
             }
             $status = Response::HTTP_CREATED;
 

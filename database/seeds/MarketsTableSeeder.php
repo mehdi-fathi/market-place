@@ -34,7 +34,7 @@ class MarketsTableSeeder extends Seeder
                 'name' => $faker->company(20),
                 'description' => $faker->text,
                 'created_at' => now(),
-                'updated_at' => $faker->dateTimeBetween('now', '+1 years'),
+                'updated_at' => now(),
             ]);
         }
     }
