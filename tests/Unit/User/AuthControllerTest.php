@@ -10,12 +10,8 @@ namespace Tests\Unit\User;
 
 
 use Apps\User\Model\User;
-use Illuminate\Database\Eloquent\Factory;
 use Illuminate\Http\Response;
 use Tests\TestCase;
-use Illuminate\Support\Str;
-use Faker\Generator as Faker;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class AuthControllerTest extends TestCase

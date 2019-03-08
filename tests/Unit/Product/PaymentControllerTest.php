@@ -8,7 +8,6 @@
 
 namespace Tests\Unit\User;
 
-
 use Apps\User\Model\Role;
 use Apps\User\Model\User;
 use Illuminate\Http\Response;
