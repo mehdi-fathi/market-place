@@ -26,18 +26,18 @@ class Product extends Model
         return $this->belongsTo(Market::class, 'market_id');
     }
 
-    public function find_by_near($location_user,$distance)
+    public function find_by_near($location_user,$radius)
     {
-        return $this->whereHas('markets', function ($query) use ($location_user,$distance) {
+        return $this->whereHas('markets', function ($query) use ($location_user,$radius) {
 
-            $query->whereHas('locations', function ($query) use ($location_user,$distance) {
+            $query->whereHas('locations', function ($query) use ($location_user,$radius) {
 
                 $latitude = $location_user['latitude'];
                 $longitude = $location_user['longitude'];
 
                 $query->whereRaw(DB::raw("(3959 * acos( cos( radians($latitude) ) * cos( radians( latitude ) )  *
                          cos( radians( longitude ) - radians($longitude) ) + sin( radians($latitude) ) * sin(
-                         radians( latitude ) ) ) ) < $distance "));
+                         radians( latitude ) ) ) ) < $radius "));
             });
         })->get();
     }

@@ -16,7 +16,6 @@ class Location extends Model
         'latitude',
         'longitude',
         'address',
-        'radius',
         'city',
     ];
     public function markets()

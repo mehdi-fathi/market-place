@@ -52,9 +52,9 @@ class AuthTest extends TestCase
             'latitude' => 120,
             'longitude' => 120,
             'address' => 'sdsdrwvvs',
-            'radius' => 120984,
             'city' => 'Tehran',
         ];
+
         $this->json('POST', '/Api/v1/register', $body,
             ['Accept' => 'application/json'])
             ->assertStatus(200)
@@ -71,7 +71,6 @@ class AuthTest extends TestCase
             'latitude' => 120,
             'longitude' => 120,
             'address' => 'sdsdrwvvs',
-            'radius' => 120984,
             'city' => 'Tehran',
         ];
         $this->json('POST', '/Api/v1/register', $body,

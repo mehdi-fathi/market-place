@@ -23,8 +23,8 @@ class ProductsTableSeeder extends Seeder
                 'title' => $faker->domainWord,
                 'price' => rand(0,100000.999),
                 'description' => $faker->text,
-                'created_at' => $faker->dateTime,
-                'updated_at' => $faker->dateTime,
+                'created_at' => now(),
+                'updated_at' => $faker->dateTimeBetween('now', '+1 years'),
             ]);
         }
     }

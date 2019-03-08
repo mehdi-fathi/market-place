@@ -72,7 +72,7 @@ class ProductTest extends TestCase
             ]);;
     }
 
-    public function test_customer_find_near()
+    public function test_customer_find_near_product()
     {
         $user = User::where([
             'email' => 'customer@gmail.com',
@@ -95,9 +95,8 @@ class ProductTest extends TestCase
                 ]
             ]);
 
-
         $response = $this->json('POST', '/Api/v1/customer/products/find-near', [
-            'distance' => 100
+            'radius' => 100
         ]);
 
         $response->assertStatus(Response::HTTP_OK)

@@ -45,7 +45,6 @@ class MarketTest extends TestCase
             'latitude' => 1145,
             'longitude' => 1145,
             'address' => 'Tehran - pleak 11',
-            'radius' => 215445,
             'city' => 'Tehran',
         ]);
 

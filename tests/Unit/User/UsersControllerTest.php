@@ -34,7 +34,6 @@ class UsersControllerTest extends TestCase
             'latitude' => 120,
             'longitude' => 120,
             'address' => 'sdsdrwvvs',
-            'radius' => 120984,
             'city' => 'Tehran',
         ];
 
@@ -60,7 +59,6 @@ class UsersControllerTest extends TestCase
             'latitude' => 120,
             'longitude' => 120,
             'address' => 'sdsdrwvvs',
-            'radius' => 120984,
             'city' => 'Tehran',
         ];
 

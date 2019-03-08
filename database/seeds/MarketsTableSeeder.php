@@ -24,7 +24,6 @@ class MarketsTableSeeder extends Seeder
                 'latitude' => $faker->latitude(40, 41.985091),
                 'longitude' => $faker->longitude(-70,-73.168285),
                 'city' => $faker->city,
-                'radius' => 1,
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
@@ -34,8 +33,8 @@ class MarketsTableSeeder extends Seeder
                 'location_id' => $lastId,
                 'name' => $faker->company(20),
                 'description' => $faker->text,
-                'created_at' => $faker->dateTime,
-                'updated_at' => $faker->dateTime,
+                'created_at' => now(),
+                'updated_at' => $faker->dateTimeBetween('now', '+1 years'),
             ]);
         }
     }

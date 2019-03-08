@@ -28,7 +28,6 @@ class LocationsTableSeeder extends Seeder
                 'longitude' => $faker->longitude(-70,-73.168285),
                 'address' => $faker->address,
                 'city' => $faker->city,
-                'radius' => 1,
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);

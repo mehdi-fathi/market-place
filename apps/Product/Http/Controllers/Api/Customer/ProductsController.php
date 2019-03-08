@@ -22,16 +22,16 @@ class ProductsController extends Controller
     {
         $status = Response::HTTP_OK;
 
-        $distance = 50;
+        $radius = 50;
 
         $location_user = Auth::user()->locations()->first();
 
-        if (!empty($request->get('distance'))) {
+        if (!empty($request->get('radius'))) {
 
-            $distance = $request->get('distance');
+            $radius = $request->get('radius');
         }
 
-        $products_near = $this->_product_model->find_by_near($location_user, $distance)->toArray();
+        $products_near = $this->_product_model->find_by_near($location_user, $radius)->toArray();
 
         return ApiOutputMaker::setOutput($products_near)
             ->setStatus($status)

@@ -60,7 +60,6 @@ class UsersTableSeeder extends Seeder
                 'latitude' => $faker->latitude(40, 41.985091),
                 'longitude' => $faker->longitude(-70,-73.168285),
                 'city' => $faker->city,
-                'radius' => 1,
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
