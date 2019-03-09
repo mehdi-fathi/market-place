@@ -4,6 +4,7 @@ namespace Apps\Product\Http\Controllers\Api\Seller;
 
 use App\Facades\ApiOutputMaker;
 use App\Http\Controllers\Controller;
+use Apps\Product\Http\Requests\StoreMarket;
 use Apps\Product\Model\Location;
 use Apps\User\Model\Market;
 use Illuminate\Http\Response;
@@ -12,7 +13,7 @@ use Request;
 
 class MarketsController extends Controller
 {
-    public function create(\Illuminate\Http\Request $request)
+    public function create(StoreMarket $request)
     {
         $status = DB::transaction(function () use ($request) {
 

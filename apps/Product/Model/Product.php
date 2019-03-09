@@ -39,6 +39,6 @@ class Product extends Model
                          cos( radians( longitude ) - radians($longitude) ) + sin( radians($latitude) ) * sin(
                          radians( latitude ) ) ) ) < $radius "));
             });
-        })->get();
+        })->with(['markets'])->get();
     }
 }
