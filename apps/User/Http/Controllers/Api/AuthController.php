@@ -52,7 +52,7 @@ class AuthController extends Controller
 
         } else {
 
-            return ApiOutputMaker::setOutput(['error' => 'Unauthorised'])
+            return ApiOutputMaker::setOutput(['error' => trans('user::msg.error_login')])
                 ->setStatus(401)
                 ->getOutput();
         }
